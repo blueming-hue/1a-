@@ -1,0 +1,234 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "PDF Processing Output Schema",
+  "description": "Schema for structured data extracted from PDF documents",
+  "type": "object",
+  "required": ["document_info", "content", "metadata"],
+  "properties": {
+    "document_info": {
+      "type": "object",
+      "required": ["filename", "pages"],
+      "properties": {
+        "filename": {
+          "type": "string",
+          "description": "Original PDF filename"
+        },
+        "title": {
+          "type": ["string", "null"],
+          "description": "Document title if extractable"
+        },
+        "author": {
+          "type": ["string", "null"],
+          "description": "Document author if extractable"
+        },
+        "subject": {
+          "type": ["string", "null"],
+          "description": "Document subject if extractable"
+        },
+        "pages": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Total number of pages"
+        },
+        "creation_date": {
+          "type": ["string", "null"],
+          "description": "Document creation date in ISO format"
+        },
+        "modification_date": {
+          "type": ["string", "null"],
+          "description": "Document modification date in ISO format"
+        }
+      }
+    },
+    "content": {
+      "type": "object",
+      "properties": {
+        "sections": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["heading", "level", "content"],
+            "properties": {
+              "heading": {
+                "type": "string",
+                "description": "Section heading text"
+              },
+              "level": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 6,
+                "description": "Heading level (1-6)"
+              },
+              "content": {
+                "type": "string",
+                "description": "Section content text"
+              },
+              "page_number": {
+                "type": "integer",
+                "minimum": 1,
+                "description": "Page number where section starts"
+              },
+              "subsections": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/properties/content/properties/sections/items"
+                }
+              }
+            }
+          }
+        },
+        "paragraphs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["text", "page_number"],
+            "properties": {
+              "text": {
+                "type": "string",
+                "description": "Paragraph text content"
+              },
+              "page_number": {
+                "type": "integer",
+                "minimum": 1,
+                "description": "Page number containing the paragraph"
+              },
+              "font_size": {
+                "type": ["number", "null"],
+                "description": "Font size if detectable"
+              },
+              "font_name": {
+                "type": ["string", "null"],
+                "description": "Font name if detectable"
+              }
+            }
+          }
+        },
+        "tables": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["page_number", "rows"],
+            "properties": {
+              "page_number": {
+                "type": "integer",
+                "minimum": 1,
+                "description": "Page number containing the table"
+              },
+              "caption": {
+                "type": ["string", "null"],
+                "description": "Table caption if present"
+              },
+              "rows": {
+                "type": "array",
+                "items": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "description": "Table data as array of rows"
+              },
+              "headers": {
+                "type": ["array", "null"],
+                "items": {
+                  "type": "string"
+                },
+                "description": "Table headers if identifiable"
+              }
+            }
+          }
+        },
+        "lists": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["type", "items", "page_number"],
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": ["bulleted", "numbered", "mixed"],
+                "description": "Type of list"
+              },
+              "items": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "List items"
+              },
+              "page_number": {
+                "type": "integer",
+                "minimum": 1,
+                "description": "Page number containing the list"
+              }
+            }
+          }
+        },
+        "figures": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["page_number"],
+            "properties": {
+              "page_number": {
+                "type": "integer",
+                "minimum": 1,
+                "description": "Page number containing the figure"
+              },
+              "caption": {
+                "type": ["string", "null"],
+                "description": "Figure caption if present"
+              },
+              "description": {
+                "type": ["string", "null"],
+                "description": "Figure description if extractable"
+              },
+              "bbox": {
+                "type": ["array", "null"],
+                "items": {
+                  "type": "number"
+                },
+                "minItems": 4,
+                "maxItems": 4,
+                "description": "Bounding box coordinates [x0, y0, x1, y1]"
+              }
+            }
+          }
+        }
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "required": ["processing_time", "extraction_method", "schema_version"],
+      "properties": {
+        "processing_time": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Processing time in seconds"
+        },
+        "extraction_method": {
+          "type": "string",
+          "description": "Method used for text extraction"
+        },
+        "schema_version": {
+          "type": "string",
+          "description": "Version of this schema"
+        },
+        "total_characters": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Total characters extracted"
+        },
+        "total_words": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Total words extracted"
+        },
+        "language": {
+          "type": ["string", "null"],
+          "description": "Detected document language"
+        }
+      }
+    }
+  }
+}
