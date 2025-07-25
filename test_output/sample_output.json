@@ -1,0 +1,134 @@
+{
+  "document_info": {
+    "filename": "sample.pdf",
+    "title": "Sample Document Title",
+    "author": "Test Author",
+    "subject": "Test Subject",
+    "pages": 3,
+    "creation_date": "2025-01-01T12:00:00",
+    "modification_date": "2025-01-01T12:00:00"
+  },
+  "content": {
+    "sections": [
+      {
+        "heading": "Introduction",
+        "level": 1,
+        "content": "This is the introduction section of the document. It provides an overview of the content and sets the context for the reader.",
+        "page_number": 1,
+        "subsections": [
+          {
+            "heading": "Background",
+            "level": 2,
+            "content": "Background information about the topic being discussed.",
+            "page_number": 1,
+            "subsections": []
+          }
+        ]
+      },
+      {
+        "heading": "Methodology",
+        "level": 1,
+        "content": "This section describes the methodology used in the research or analysis.",
+        "page_number": 2,
+        "subsections": []
+      },
+      {
+        "heading": "Results",
+        "level": 1,
+        "content": "The results section presents the findings of the study.",
+        "page_number": 2,
+        "subsections": []
+      },
+      {
+        "heading": "Conclusion",
+        "level": 1,
+        "content": "The conclusion summarizes the key findings and their implications.",
+        "page_number": 3,
+        "subsections": []
+      }
+    ],
+    "paragraphs": [
+      {
+        "text": "This is the first paragraph of the document. It contains introductory text that explains the purpose and scope of the document.",
+        "page_number": 1,
+        "font_size": 12.0,
+        "font_name": "Times-Roman"
+      },
+      {
+        "text": "This is another paragraph that provides additional context and details about the topic being discussed.",
+        "page_number": 1,
+        "font_size": 12.0,
+        "font_name": "Times-Roman"
+      }
+    ],
+    "tables": [
+      {
+        "page_number": 2,
+        "caption": "Table 1: Sample Data",
+        "headers": [
+          "Item",
+          "Value",
+          "Description"
+        ],
+        "rows": [
+          [
+            "Item 1",
+            "100",
+            "First item description"
+          ],
+          [
+            "Item 2",
+            "200",
+            "Second item description"
+          ],
+          [
+            "Item 3",
+            "300",
+            "Third item description"
+          ]
+        ]
+      }
+    ],
+    "lists": [
+      {
+        "type": "bulleted",
+        "items": [
+          "First bullet point",
+          "Second bullet point",
+          "Third bullet point"
+        ],
+        "page_number": 2
+      },
+      {
+        "type": "numbered",
+        "items": [
+          "First numbered item",
+          "Second numbered item",
+          "Third numbered item"
+        ],
+        "page_number": 3
+      }
+    ],
+    "figures": [
+      {
+        "page_number": 2,
+        "caption": "Figure 1: Sample Chart",
+        "description": "A sample chart showing data visualization",
+        "bbox": [
+          100,
+          200,
+          400,
+          500
+        ]
+      }
+    ]
+  },
+  "metadata": {
+    "processing_time": 1.23,
+    "extraction_method": "PyMuPDF",
+    "schema_version": "1.0",
+    "total_characters": 1500,
+    "total_words": 250,
+    "language": "en"
+  }
+}

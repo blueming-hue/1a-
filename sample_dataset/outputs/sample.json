@@ -1,0 +1,200 @@
+{
+  "document_info": {
+    "filename": "sample.pdf",
+    "title": "Adobe India Hackathon 2025 - Challenge 1a Sample Document",
+    "author": "Test Author",
+    "subject": "PDF Processing Challenge",
+    "pages": 5,
+    "creation_date": "2025-01-20T10:30:00",
+    "modification_date": "2025-01-20T11:45:00"
+  },
+  "content": {
+    "sections": [
+      {
+        "heading": "Executive Summary",
+        "level": 1,
+        "content": "This document demonstrates the capabilities of the PDF processing solution developed for the Adobe India Hackathon 2025 Challenge 1a. The solution extracts structured data from PDF documents and generates comprehensive JSON outputs.",
+        "page_number": 1,
+        "subsections": []
+      },
+      {
+        "heading": "Introduction",
+        "level": 1,
+        "content": "The PDF processing challenge requires extracting meaningful structure from documents while maintaining performance constraints. This solution uses PyMuPDF for fast text extraction and implements intelligent structure analysis.",
+        "page_number": 1,
+        "subsections": [
+          {
+            "heading": "Problem Statement",
+            "level": 2,
+            "content": "Process PDF documents to extract structured information including headings, paragraphs, tables, lists, and figures.",
+            "page_number": 1,
+            "subsections": []
+          },
+          {
+            "heading": "Solution Approach",
+            "level": 2,
+            "content": "Our approach combines high-performance text extraction with intelligent document structure analysis to meet the challenge requirements.",
+            "page_number": 2,
+            "subsections": []
+          }
+        ]
+      },
+      {
+        "heading": "Technical Implementation",
+        "level": 1,
+        "content": "The solution is built using Python with PyMuPDF for PDF processing, implementing multi-threaded processing for optimal performance.",
+        "page_number": 2,
+        "subsections": [
+          {
+            "heading": "Architecture",
+            "level": 2,
+            "content": "The system consists of modular components: TextExtractor, StructureAnalyzer, and PDFProcessor.",
+            "page_number": 2,
+            "subsections": []
+          },
+          {
+            "heading": "Performance Optimization",
+            "level": 2,
+            "content": "Multi-threading, memory-efficient processing, and optimized algorithms ensure sub-10-second processing for 50-page documents.",
+            "page_number": 3,
+            "subsections": []
+          }
+        ]
+      },
+      {
+        "heading": "Results and Validation",
+        "level": 1,
+        "content": "The solution successfully meets all challenge requirements including execution time, memory usage, and output format compliance.",
+        "page_number": 4,
+        "subsections": []
+      },
+      {
+        "heading": "Conclusion",
+        "level": 1,
+        "content": "This PDF processing solution demonstrates high-performance document analysis capabilities while maintaining strict resource constraints and producing structured, schema-compliant outputs.",
+        "page_number": 5,
+        "subsections": []
+      }
+    ],
+    "paragraphs": [
+      {
+        "text": "The Adobe India Hackathon 2025 Challenge 1a focuses on developing a high-performance PDF processing solution that can extract structured data from complex documents.",
+        "page_number": 1,
+        "font_size": 12.0,
+        "font_name": "Times-Roman"
+      },
+      {
+        "text": "Our solution leverages the power of PyMuPDF (fitz) library for fast and reliable text extraction, combined with intelligent document structure analysis algorithms.",
+        "page_number": 1,
+        "font_size": 12.0,
+        "font_name": "Times-Roman"
+      },
+      {
+        "text": "The system is designed to process documents efficiently while staying within the specified constraints: execution time ≤ 10 seconds for 50-page PDFs, memory usage ≤ 16GB, and no internet access during runtime.",
+        "page_number": 2,
+        "font_size": 12.0,
+        "font_name": "Times-Roman"
+      },
+      {
+        "text": "Key features include automatic section detection, table extraction, list identification, and figure caption recognition.",
+        "page_number": 3,
+        "font_size": 12.0,
+        "font_name": "Times-Roman"
+      },
+      {
+        "text": "The solution has been thoroughly tested and validated to ensure compliance with all challenge requirements and optimal performance across various document types.",
+        "page_number": 4,
+        "font_size": 12.0,
+        "font_name": "Times-Roman"
+      }
+    ],
+    "tables": [
+      {
+        "page_number": 3,
+        "caption": "Table 1: Performance Benchmarks",
+        "headers": ["Document Size", "Processing Time", "Memory Usage", "Status"],
+        "rows": [
+          ["10 pages", "1.2s", "256MB", "✓ Pass"],
+          ["25 pages", "3.1s", "512MB", "✓ Pass"],
+          ["50 pages", "7.8s", "1.2GB", "✓ Pass"],
+          ["100 pages", "15.2s", "2.1GB", "⚠ Exceeds time limit"]
+        ]
+      },
+      {
+        "page_number": 4,
+        "caption": "Table 2: Feature Extraction Results",
+        "headers": ["Feature Type", "Extraction Rate", "Accuracy"],
+        "rows": [
+          ["Headings", "98%", "95%"],
+          ["Paragraphs", "99%", "97%"],
+          ["Tables", "92%", "89%"],
+          ["Lists", "94%", "91%"],
+          ["Figures", "87%", "85%"]
+        ]
+      }
+    ],
+    "lists": [
+      {
+        "type": "bulleted",
+        "items": [
+          "High-performance text extraction using PyMuPDF",
+          "Intelligent document structure analysis",
+          "Multi-threaded processing for optimal speed",
+          "Memory-efficient streaming algorithms",
+          "Schema-compliant JSON output generation"
+        ],
+        "page_number": 2
+      },
+      {
+        "type": "numbered",
+        "items": [
+          "Load PDF document and extract metadata",
+          "Extract text blocks with formatting information",
+          "Analyze document structure and identify hierarchy",
+          "Extract tables, lists, and figures",
+          "Generate structured JSON output"
+        ],
+        "page_number": 3
+      },
+      {
+        "type": "bulleted",
+        "items": [
+          "Execution time ≤ 10 seconds for 50-page PDFs",
+          "Memory usage ≤ 16GB RAM",
+          "No internet access during runtime",
+          "AMD64 architecture compatibility",
+          "Open source libraries only"
+        ],
+        "page_number": 4
+      }
+    ],
+    "figures": [
+      {
+        "page_number": 2,
+        "caption": "Figure 1: System Architecture Diagram",
+        "description": "Overview of the PDF processing system architecture showing the flow from input PDF to structured JSON output",
+        "bbox": [100, 200, 500, 400]
+      },
+      {
+        "page_number": 3,
+        "caption": "Figure 2: Performance Comparison Chart",
+        "description": "Bar chart comparing processing times for different document sizes",
+        "bbox": [80, 150, 520, 380]
+      },
+      {
+        "page_number": 4,
+        "caption": "Figure 3: Feature Extraction Accuracy",
+        "description": "Pie chart showing the accuracy rates for different types of content extraction",
+        "bbox": [120, 180, 480, 420]
+      }
+    ]
+  },
+  "metadata": {
+    "processing_time": 2.45,
+    "extraction_method": "PyMuPDF",
+    "schema_version": "1.0",
+    "total_characters": 3847,
+    "total_words": 642,
+    "language": "en"
+  }
+}
