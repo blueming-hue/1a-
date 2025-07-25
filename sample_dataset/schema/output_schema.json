@@ -1,0 +1,248 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "PDF Processing Output Schema",
+  "description": "Schema for JSON output from PDF processing solution",
+  "type": "object",
+  "required": [
+    "document_metadata",
+    "content_analysis",
+    "structure_analysis", 
+    "page_analysis",
+    "extraction_quality"
+  ],
+  "properties": {
+    "document_metadata": {
+      "type": "object",
+      "required": ["filename", "processing_timestamp", "schema_version"],
+      "properties": {
+        "filename": {"type": "string"},
+        "processing_timestamp": {"type": "string", "format": "date-time"},
+        "schema_version": {"type": "string"},
+        "document_info": {
+          "type": "object",
+          "properties": {
+            "title": {"type": "string"},
+            "author": {"type": "string"},
+            "subject": {"type": "string"},
+            "creator": {"type": "string"},
+            "producer": {"type": "string"},
+            "creation_date": {"type": "string"},
+            "modification_date": {"type": "string"},
+            "page_count": {"type": "integer", "minimum": 0}
+          }
+        },
+        "file_hash": {"type": "string"}
+      }
+    },
+    "content_analysis": {
+      "type": "object",
+      "properties": {
+        "text_statistics": {
+          "type": "object",
+          "properties": {
+            "character_count": {"type": "integer", "minimum": 0},
+            "word_count": {"type": "integer", "minimum": 0},
+            "sentence_count": {"type": "integer", "minimum": 0},
+            "paragraph_count": {"type": "integer", "minimum": 0},
+            "average_words_per_sentence": {"type": "number", "minimum": 0},
+            "average_characters_per_word": {"type": "number", "minimum": 0}
+          }
+        },
+        "keywords": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "term": {"type": "string"},
+              "score": {"type": "number", "minimum": 0, "maximum": 1},
+              "rank": {"type": "integer", "minimum": 1}
+            }
+          }
+        },
+        "named_entities": {
+          "type": "object",
+          "properties": {
+            "persons": {"type": "array", "items": {"type": "string"}},
+            "organizations": {"type": "array", "items": {"type": "string"}},
+            "locations": {"type": "array", "items": {"type": "string"}},
+            "dates": {"type": "array", "items": {"type": "string"}},
+            "contact_info": {
+              "type": "object",
+              "properties": {
+                "emails": {"type": "array", "items": {"type": "string"}},
+                "phone_numbers": {"type": "array", "items": {"type": "string"}},
+                "urls": {"type": "array", "items": {"type": "string"}}
+              }
+            }
+          }
+        },
+        "sentiment_analysis": {
+          "type": "object",
+          "properties": {
+            "polarity": {"type": "number", "minimum": -1, "maximum": 1},
+            "subjectivity": {"type": "number", "minimum": 0, "maximum": 1},
+            "sentiment_label": {"type": "string", "enum": ["positive", "negative", "neutral"]}
+          }
+        },
+        "topics": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "topic_id": {"type": "integer", "minimum": 0},
+              "terms": {"type": "array", "items": {"type": "string"}},
+              "weight": {"type": "number", "minimum": 0, "maximum": 1},
+              "sample_sentences": {"type": "array", "items": {"type": "string"}}
+            }
+          }
+        }
+      }
+    },
+    "structure_analysis": {
+      "type": "object",
+      "properties": {
+        "document_structure": {
+          "type": "object",
+          "properties": {
+            "headings": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "text": {"type": "string"},
+                  "level": {"type": "integer", "minimum": 1, "maximum": 6},
+                  "page": {"type": "integer", "minimum": 1},
+                  "type": {"type": "string"}
+                }
+              }
+            },
+            "lists": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "type": {"type": "string", "enum": ["bullet", "numbered", "lettered"]},
+                  "page": {"type": "integer", "minimum": 1},
+                  "item_count": {"type": "integer", "minimum": 0},
+                  "items": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "text": {"type": "string"},
+                        "marker": {"type": "string"}
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "tables": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "page": {"type": "integer", "minimum": 1},
+                  "dimensions": {
+                    "type": "object",
+                    "properties": {
+                      "rows": {"type": "integer", "minimum": 0},
+                      "columns": {"type": "integer", "minimum": 0}
+                    }
+                  },
+                  "has_header": {"type": "boolean"},
+                  "column_types": {"type": "array", "items": {"type": "string"}},
+                  "summary": {"type": "object"},
+                  "sample_data": {"type": "array"}
+                }
+              }
+            }
+          }
+        },
+        "layout_analysis": {
+          "type": "object",
+          "properties": {
+            "page_count": {"type": "integer", "minimum": 0},
+            "layout_type": {"type": "string"},
+            "page_statistics": {"type": "array"},
+            "text_distribution": {"type": "array", "items": {"type": "number"}}
+          }
+        },
+        "document_hierarchy": {
+          "type": "object",
+          "properties": {
+            "sections": {"type": "array"},
+            "outline": {"type": "array", "items": {"type": "string"}},
+            "depth": {"type": "integer", "minimum": 0}
+          }
+        },
+        "structural_summary": {
+          "type": "object",
+          "properties": {
+            "heading_count": {"type": "integer", "minimum": 0},
+            "list_count": {"type": "integer", "minimum": 0},
+            "table_count": {"type": "integer", "minimum": 0},
+            "has_table_of_contents": {"type": "boolean"},
+            "has_index": {"type": "boolean"},
+            "document_type": {"type": "string"}
+          }
+        }
+      }
+    },
+    "page_analysis": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "page_number": {"type": "integer", "minimum": 1},
+          "text_length": {"type": "integer", "minimum": 0},
+          "content_summary": {
+            "type": "object",
+            "properties": {
+              "has_text": {"type": "boolean"},
+              "has_images": {"type": "boolean"},
+              "has_tables": {"type": "boolean"},
+              "block_count": {"type": "integer", "minimum": 0}
+            }
+          },
+          "images": {"type": "array"},
+          "tables": {"type": "array"},
+          "text_preview": {"type": "string"}
+        }
+      }
+    },
+    "extraction_quality": {
+      "type": "object",
+      "properties": {
+        "extraction_metrics": {
+          "type": "object",
+          "properties": {
+            "total_characters_extracted": {"type": "integer", "minimum": 0},
+            "pages_with_text": {"type": "integer", "minimum": 0},
+            "extraction_success_rate": {"type": "number", "minimum": 0, "maximum": 1},
+            "average_characters_per_page": {"type": "number", "minimum": 0}
+          }
+        },
+        "quality_indicators": {
+          "type": "object",
+          "properties": {
+            "has_structured_content": {"type": "boolean"},
+            "has_identifiable_entities": {"type": "boolean"},
+            "has_coherent_text": {"type": "boolean"},
+            "extraction_issues": {"type": "array", "items": {"type": "string"}}
+          }
+        },
+        "confidence_score": {"type": "number", "minimum": 0, "maximum": 1}
+      }
+    },
+    "raw_content": {
+      "type": "object",
+      "properties": {
+        "full_text": {"type": "string"},
+        "page_count": {"type": "integer", "minimum": 0},
+        "has_images": {"type": "boolean"},
+        "has_tables": {"type": "boolean"}
+      }
+    }
+  }
+}
